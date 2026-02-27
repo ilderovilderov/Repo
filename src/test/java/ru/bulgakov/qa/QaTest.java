@@ -44,7 +44,7 @@ public class QaTest {
         $("#firstName").setValue("Alexander");
         $("#lastName").setValue("Test");
         $("#userEmail").setValue("alexander@test.ru");
-        $("#gender-radio-1").parent().click();
+        $("#gender-radio-1").click();
         $("#userNumber").setValue("9930900333");
 
         $("#dateOfBirthInput").click();
