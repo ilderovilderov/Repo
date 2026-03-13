@@ -1,4 +1,4 @@
-package pageObject.demo.qa;
+package pageObject.otherTests;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;

@@ -1,4 +1,4 @@
-package pageObject.demo.qa;
+package pageObject.otherTests;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,7 @@ public class AllTest {
     @Test
     void DemoQaTest() {
 
-        Configuration.holdBrowserOpen=true;
+        Configuration.holdBrowserOpen=true;                // оставил
         Configuration.browserSize = "1920x1080";
 
       open("https://demoqa.com/automation-practice-form", DemoQARegistration.class)
@@ -29,5 +29,24 @@ public class AllTest {
 
         $("#submit").click();
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+    }
+
+
+    @Test
+    void SwagLabsShopTest() {
+        Configuration.holdBrowserOpen=true;                // оставил
+        Configuration.browserSize = "1920x1080";
+
+        // Логимимся, выбираем товар, делаем заказ и убеждаемся, что заказ сделан
+
+        open("https://www.saucedemo.com/", SwagLabsShop.class)
+                .inputUsername("standard_user")
+                .inputPassword("secret_sauce")
+                .chooseBikeLight()
+                .makeOrder()
+                .setPersonalData("Ivan", "Petrov", "435677");
+
+        $("#finish").click();
+        $(".complete-header").shouldHave(text("Thank you for your order!"));
     }
 }
