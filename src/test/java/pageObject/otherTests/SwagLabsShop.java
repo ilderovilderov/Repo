@@ -2,6 +2,7 @@ package pageObject.otherTests;
 
 import com.codeborne.selenide.SelenideElement;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 
 public class SwagLabsShop {
@@ -15,6 +16,8 @@ public class SwagLabsShop {
     private SelenideElement lastName = $("#last-name");
     private SelenideElement postalCode = $("#postal-code");
     private SelenideElement continueButton = $("#continue");
+    private SelenideElement submitButton = $("#finish");
+    private SelenideElement verifyArea = $(".complete-header");
 
     public SwagLabsShop inputUsername(String user) {
         username.setValue(user);
@@ -47,6 +50,18 @@ public class SwagLabsShop {
         lastName.setValue(lname);
         postalCode.setValue(code);
         continueButton.click();
+
+        return this;
+    }
+
+    public SwagLabsShop submit() {
+        submitButton.click();
+
+        return this;
+    }
+
+    public SwagLabsShop verify() {
+        verifyArea.shouldHave(text("Thank you for your order!"));
 
         return this;
     }

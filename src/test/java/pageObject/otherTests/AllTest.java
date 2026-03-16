@@ -25,10 +25,9 @@ public class AllTest {
               .chooseHobbies(2, 1)
               .uploadPicture()
               .setCurrentAddress("WWW LENINGRAD SBP TOCHKA RU")
-              .chooseStateAndCity("NCR", "Delhi");
-
-        $("#submit").click();
-        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+              .chooseStateAndCity("NCR", "Delhi")
+              .submit()
+              .verify();
     }
 
 
@@ -44,9 +43,8 @@ public class AllTest {
                 .inputPassword("secret_sauce")
                 .chooseBikeLight()
                 .makeOrder()
-                .setPersonalData("Ivan", "Petrov", "435677");
-
-        $("#finish").click();
-        $(".complete-header").shouldHave(text("Thank you for your order!"));
+                .setPersonalData("Ivan", "Petrov", "435677")
+                .submit()
+                .verify();
     }
 }

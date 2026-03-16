@@ -3,6 +3,7 @@ package pageObject.otherTests;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -22,6 +23,8 @@ public class DemoQARegistration {
     private SelenideElement currentAddress = $("#currentAddress");
     private SelenideElement chooseState = $("#state");
     private SelenideElement chooseCity =  $("#city");
+    private SelenideElement submitButton = $("#submit");
+    private SelenideElement verifyArea = $("#example-modal-sizes-title-lg");
 
     public DemoQARegistration setFirstName(String name) {
         firstName.setValue(name);
@@ -93,6 +96,18 @@ public class DemoQARegistration {
         $(byText(yourState)).click();
         chooseCity.click();
         $(byText(yourCity)).click();
+
+        return this;
+    }
+
+    public DemoQARegistration submit() {
+        submitButton.click();
+
+        return this;
+    }
+
+    public DemoQARegistration verify() {
+        verifyArea.shouldHave(text("Thanks for submitting the form"));
 
         return this;
     }
