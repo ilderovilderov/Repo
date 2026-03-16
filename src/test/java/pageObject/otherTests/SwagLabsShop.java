@@ -27,6 +27,11 @@ public class SwagLabsShop {
 
     public SwagLabsShop inputPassword(String pass) {
         password.setValue(pass);
+
+        return this;
+    }
+
+    public SwagLabsShop loginIN() {
         loginButton.click();
 
         return this;
@@ -49,6 +54,11 @@ public class SwagLabsShop {
         firstName.setValue(fname);
         lastName.setValue(lname);
         postalCode.setValue(code);
+
+        return this;
+    }
+
+    public SwagLabsShop continueOrder() {
         continueButton.click();
 
         return this;

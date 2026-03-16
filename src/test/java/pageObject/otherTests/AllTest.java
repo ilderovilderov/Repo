@@ -3,7 +3,6 @@ package pageObject.otherTests;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
 public class AllTest {
@@ -21,7 +20,7 @@ public class AllTest {
               .setPhoneNumber("9930900333")
               .chooseGender(2)
               .setBirthDate("1996", "May", 20 )
-              .chooseSubjects("Acco")
+              .chooseSubjects("Commerce", "Math", "Arts")
               .chooseHobbies(2, 1)
               .uploadPicture()
               .setCurrentAddress("WWW LENINGRAD SBP TOCHKA RU")
@@ -29,7 +28,6 @@ public class AllTest {
               .submit()
               .verify();
     }
-
 
     @Test
     void SwagLabsShopTest() {
@@ -41,9 +39,11 @@ public class AllTest {
         open("https://www.saucedemo.com/", SwagLabsShop.class)
                 .inputUsername("standard_user")
                 .inputPassword("secret_sauce")
+                .loginIN()
                 .chooseBikeLight()
                 .makeOrder()
                 .setPersonalData("Ivan", "Petrov", "435677")
+                .continueOrder()
                 .submit()
                 .verify();
     }
