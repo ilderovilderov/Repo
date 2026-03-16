@@ -33,9 +33,6 @@ public class AllTest {
     void SwagLabsShopTest() {
         Configuration.holdBrowserOpen=true;                // оставил
         Configuration.browserSize = "1920x1080";
-
-        // Логимимся, выбираем товар, делаем заказ и убеждаемся, что заказ сделан
-
         open("https://www.saucedemo.com/", SwagLabsShop.class)
                 .inputUsername("standard_user")
                 .inputPassword("secret_sauce")
