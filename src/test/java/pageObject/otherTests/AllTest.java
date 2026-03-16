@@ -31,8 +31,10 @@ public class AllTest {
 
     @Test
     void SwagLabsShopTest() {
+
         Configuration.holdBrowserOpen=true;                // оставил
         Configuration.browserSize = "1920x1080";
+
         open("https://www.saucedemo.com/", SwagLabsShop.class)
                 .inputUsername("standard_user")
                 .inputPassword("secret_sauce")
