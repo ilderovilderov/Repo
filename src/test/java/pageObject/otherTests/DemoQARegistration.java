@@ -3,6 +3,7 @@ package pageObject.otherTests;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -16,12 +17,13 @@ public class DemoQARegistration {
     private SelenideElement yearButton = $(".react-datepicker__year-select");
     private SelenideElement monthButton = $(".react-datepicker__month-select");
     private ElementsCollection dayButton = $$(".react-datepicker__day");
-    private SelenideElement youSubject = $("#subjectsInput");
-    private ElementsCollection subjectCollection = $$("[role=listbox] div");
     private SelenideElement picture = $("#uploadPicture");
     private SelenideElement currentAddress = $("#currentAddress");
     private SelenideElement chooseState = $("#state");
     private SelenideElement chooseCity =  $("#city");
+    private SelenideElement submitButton = $("#submit");
+    private SelenideElement verifyArea = $("#example-modal-sizes-title-lg");
+    private SelenideElement youSubjects = $("#react-select-2-option-0");
 
     public DemoQARegistration setFirstName(String name) {
         firstName.setValue(name);
@@ -62,16 +64,18 @@ public class DemoQARegistration {
         return this;
     }
 
-    public DemoQARegistration chooseSubjects(String subject) {                         // Вот тут не дошло как выбрать один или несколько
-        youSubject.setValue(subject);                                        // возможно также как и в chooseHobbies (см. ниже) через список индексов,
-        subjectCollection.get(0).click();                                    // но заморачиваться не стал, оставил только одно хобби.
-
+    public DemoQARegistration chooseSubjects(String... subject) {
+        for (String index : subject) {
+            $("#subjectsInput").click();                    // Реализовать через index смог только таким способом,
+            $("#subjectsInput").setValue(index);            // в несколько действий. Элемент на сайте, с этим выпадающим списком,
+            youSubjects.click();                                      // реализован не просто как-то.
+        }
         return this;
     }
 
-    public DemoQARegistration chooseHobbies(int... hobbie) {                           // Вот тут поспрашивал у нейросети
-        for (int index : hobbie) {                                           // как выбрать один ИЛИ несколько чекбоксов
-            $("#hobbies-checkbox-%s".formatted(index)).click();              // чтобы не писать три метода. %s - добавил как ты научил.
+    public DemoQARegistration chooseHobbies(int... hobbie) {
+        for (int index : hobbie) {
+            $("#hobbies-checkbox-%s".formatted(index)).click();
         }
         return this;
     }
@@ -93,6 +97,18 @@ public class DemoQARegistration {
         $(byText(yourState)).click();
         chooseCity.click();
         $(byText(yourCity)).click();
+
+        return this;
+    }
+
+    public DemoQARegistration submit() {
+        submitButton.click();
+
+        return this;
+    }
+
+    public DemoQARegistration verify() {
+        verifyArea.shouldHave(text("Thanks for submitting the form"));
 
         return this;
     }
