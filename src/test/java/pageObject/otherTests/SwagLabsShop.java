@@ -21,32 +21,27 @@ public class SwagLabsShop {
 
     public SwagLabsShop inputUsername(String user) {
         username.setValue(user);
-
         return this;
     }
 
     public SwagLabsShop inputPassword(String pass) {
         password.setValue(pass);
-
         return this;
     }
 
     public SwagLabsShop loginIN() {
         loginButton.click();
-
         return this;
     }
 
     public SwagLabsShop chooseBikeLight() {
         bikeLightButton.click();
-
         return this;
     }
 
     public SwagLabsShop makeOrder() {
         cartLink.click();
         checkoutButton.click();
-
         return this;
     }
 
@@ -54,25 +49,21 @@ public class SwagLabsShop {
         firstName.setValue(fname);
         lastName.setValue(lname);
         postalCode.setValue(code);
-
         return this;
     }
 
     public SwagLabsShop continueOrder() {
         continueButton.click();
-
         return this;
     }
 
     public SwagLabsShop submit() {
         submitButton.click();
-
         return this;
     }
 
     public SwagLabsShop verify() {
         verifyArea.shouldHave(text("Thank you for your order!"));
-
         return this;
     }
 }

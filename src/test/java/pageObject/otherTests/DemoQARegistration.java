@@ -27,31 +27,26 @@ public class DemoQARegistration {
 
     public DemoQARegistration setFirstName(String name) {
         firstName.setValue(name);
-
         return this;
     }
 
     public DemoQARegistration setLastName(String last) {
         lastName.setValue(last);
-
         return this;
     }
 
     public DemoQARegistration setEmail(String email) {
         emailInput.setValue(email);
-
         return this;
     }
 
     public DemoQARegistration setPhoneNumber(String phoneNumber) {
         number.setValue(phoneNumber);
-
         return this;
     }
 
     public DemoQARegistration chooseGender(int gender) {
         $("#gender-radio-%s".formatted(gender)).click();
-
         return this;
     }
 
@@ -60,7 +55,6 @@ public class DemoQARegistration {
         yearButton.selectOption(year);
         monthButton.selectOption(month);
         dayButton.get(day - 1).click(); // оставил всё как есть
-
         return this;
     }
 
@@ -82,13 +76,11 @@ public class DemoQARegistration {
 
     public DemoQARegistration uploadPicture() {
         picture.uploadFromClasspath("obezgan.jpg");
-
         return this;
     }
 
     public DemoQARegistration setCurrentAddress(String Address) {
         currentAddress.setValue(Address);
-
         return this;
     }
 
@@ -97,19 +89,16 @@ public class DemoQARegistration {
         $(byText(yourState)).click();
         chooseCity.click();
         $(byText(yourCity)).click();
-
         return this;
     }
 
     public DemoQARegistration submit() {
         submitButton.click();
-
         return this;
     }
 
     public DemoQARegistration verify() {
         verifyArea.shouldHave(text("Thanks for submitting the form"));
-
         return this;
     }
 }
