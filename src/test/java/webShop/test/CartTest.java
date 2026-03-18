@@ -1,17 +1,20 @@
 package webShop.test;
 
-import net.datafaker.Faker;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import webShop.pages.CartPage;
 import webShop.pages.MainPage;
+import webShop.pages.ProductPage;
 import webShop.steps.AuthSteps;
 
-import static com.codeborne.selenide.Selenide.*;
-import static webShop.config.Config.*;
+import static com.codeborne.selenide.Selenide.open;
+import static java.util.Locale.US;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static webShop.config.Config.WEB_SHOP_URL;
 
 public class CartTest {
 
-    private static final Faker faker = new Faker();
     private final AuthSteps authSteps = new AuthSteps();
 
     @BeforeEach
@@ -21,21 +24,42 @@ public class CartTest {
 
     @Test
     void addItemToCartTest() {
+        int processorIndex = 0; // 0 = slow, 1 = medium, 2 = fast
 
-        open(WEB_SHOP_URL, MainPage.class)
-                .clickComputerButton()
-                .chooseDesktop()
-                .selectProcessor(2)
-                .setQuantity("5")
-                .checkNameAndPrice()
+        ProductPage productPage = open(WEB_SHOP_URL, MainPage.class)
+                .hoverComputersMenu()
+                .selectDesktops()
+                .chooseDesktop();
+
+        String itemName = productPage.getProductName();
+        String itemPrice = productPage.getProductPrice();
+        String itemQuantity = "5";
+
+        CartPage cartPage = productPage
+                .selectProcessor(processorIndex)
+                .setQuantity(itemQuantity)
                 .addToCart()
-                .checkQtyItmemsInCart()
+                .checkQtyItemsInCart(itemQuantity)
                 .checkSuccessNotification()
-                .goToCart()
-                .checkProductName()
-                .checkQtyItemsInCart()
-           //     .totalPriceIfProcessorSlow();               // В общем, общую цену товара на выходе реализовал так:
-           //     .totalPriceIfProcessorMedium();             // в зависимости от того, какой процессор выбираем
-                .totalPriceIfProcessorFast();                 // такой метод и запускаем. Всё работает. По другому я не смог.
-        }                                                     // И с нейросетями пробовал и без, не дошло, в общем :)
+                .goToCart();
+
+        float processorPrice = getProcessorPrice(processorIndex);
+        String expectedTotal = String.format(US, "%.2f",
+                (Float.parseFloat(itemPrice) + processorPrice) * Float.parseFloat(itemQuantity));
+
+        assertAll(
+                () -> assertEquals(itemName, cartPage.getItemName()),
+                () -> assertEquals(expectedTotal, cartPage.getSubtotal()),
+                () -> assertEquals(itemQuantity, cartPage.getQuantity())
+        );
+    }
+
+    private float getProcessorPrice(int processorIndex) {
+        return switch (processorIndex) {
+            case 0 -> 0f;
+            case 1 -> 15f;
+            case 2 -> 100f;
+            default -> throw new IllegalArgumentException("Unknown processor index: " + processorIndex);
+        };
+    }
 }
