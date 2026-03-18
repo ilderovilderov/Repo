@@ -1,0 +1,16 @@
+package webShop.config;
+
+public class Config {
+
+    public static final String WEB_SHOP_URL = "https://demowebshop.tricentis.com/";
+
+    public static final String WEB_SHOP_REGISTRATION_URL = WEB_SHOP_URL + "register";
+
+   public static String itemQuantity;
+
+   public static String itemName;
+
+   public static String itemPrice;
+
+
+}

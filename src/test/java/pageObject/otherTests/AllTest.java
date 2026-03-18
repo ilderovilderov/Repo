@@ -10,7 +10,7 @@ public class AllTest {
     @Test
     void DemoQaTest() {
 
-        Configuration.holdBrowserOpen=true;                // оставил
+        Configuration.holdBrowserOpen=true;               // оставил
         Configuration.browserSize = "1920x1080";
 
       open("https://demoqa.com/automation-practice-form", DemoQARegistration.class)
