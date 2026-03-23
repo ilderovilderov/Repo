@@ -17,4 +17,14 @@ public class AuthSteps {
                         faker.internet().emailAddress(),
                         faker.credentials().password());
     }
+
+    private float getProcessorSurcharge(int processorIndex) {
+        return switch (processorIndex) {
+            case 0 -> 0f;      // slow - без надбавки
+            case 1 -> 15f;     // medium - +15$
+            case 2 -> 100f;    // fast - +100$
+            default -> throw new IllegalArgumentException(
+                    "Unknown processor index: " + processorIndex);
+        };
+    }
 }
