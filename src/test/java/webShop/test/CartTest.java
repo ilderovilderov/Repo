@@ -2,6 +2,7 @@ package webShop.test;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import jUnit.TestBase;
 import webShop.pages.CartPage;
 import webShop.pages.MainPage;
 import webShop.pages.ProductPage;
@@ -13,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static webShop.config.Config.WEB_SHOP_URL;
 
-public class CartTest {
+public class CartTest extends TestBase {
 
     private final AuthSteps authSteps = new AuthSteps();
 

@@ -1,13 +1,14 @@
 package ru.bulgakov.qa;
 
 import com.codeborne.selenide.Configuration;
+import jUnit.TestBase;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class QaTest {
+public class QaTest extends TestBase {
 
     @Test
     void mentoringPriceShouldBe47000Test() {

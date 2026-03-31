@@ -3,6 +3,7 @@ package webShop.pages;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 public class LoginPage {
@@ -26,6 +27,11 @@ public class LoginPage {
 
     public LoginPage setEmail(String email) {
         emailInput.setValue(email);
+        return this;
+    }
+
+    public LoginPage verifyEmailValidationAppear() {
+        $("span.field-validation-error").shouldBe(visible);
         return this;
     }
 

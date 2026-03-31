@@ -1,11 +1,12 @@
 package pageObject.otherTests;
 
 import com.codeborne.selenide.Configuration;
+import jUnit.TestBase;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class AllTest {
+public class AllTest extends TestBase {
 
     @Test
     void DemoQaTest() {

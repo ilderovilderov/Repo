@@ -15,3 +15,9 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+task negativeTest(type: Test) {                    // - подключаем таску для негативных тестов
+    useJUnitPlatform {
+        includeTags 'negative'
+    }
+}
