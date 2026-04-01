@@ -24,7 +24,7 @@ public class LoginTest extends TestBase {
 
     @Nested
     public class PositiveTests {
-        @Test
+        @BeforeEach
         @Owner("ilderovilderov")
         @Tag("positive")
         @Severity(CRITICAL)
