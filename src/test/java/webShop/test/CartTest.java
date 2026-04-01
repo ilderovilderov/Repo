@@ -1,6 +1,9 @@
 package webShop.test;
 
+import io.qameta.allure.*;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import jUnit.TestBase;
 import webShop.pages.CartPage;
@@ -9,6 +12,7 @@ import webShop.pages.ProductPage;
 import webShop.steps.AuthSteps;
 
 import static com.codeborne.selenide.Selenide.open;
+import static io.qameta.allure.SeverityLevel.CRITICAL;
 import static java.util.Locale.US;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -24,6 +28,14 @@ public class CartTest extends TestBase {
     }
 
     @Test
+    @Owner("ilderovilderov")
+    @Tag("positive")
+    @Severity(CRITICAL)
+    @Epic("Добавление товара в корзину")
+    @Feature("Добавление товара из категории Desktop в корзину")
+    @Story("Добавление товара из категории Desktop с изменением конфигурации")
+    @Link("TASK-006")
+    @DisplayName("Успешное добавление товара из категории Desktop в корзину с изменением количества и конфигурации")
     void addItemToCartTest() {
         int processorIndex = 0; // 0 = slow, 1 = medium, 2 = fast
 
