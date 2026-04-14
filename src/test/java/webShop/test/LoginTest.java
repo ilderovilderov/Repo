@@ -26,7 +26,6 @@ public class LoginTest extends TestBase {
     public class PositiveTests {
         @BeforeEach
         @Owner("ilderovilderov")
-        @Tag("positive")
         @Severity(CRITICAL)
         @Epic("Авторизация")
         @Feature("Регистрация")
@@ -35,6 +34,8 @@ public class LoginTest extends TestBase {
         // @Issue("BUG-19") //- описание проблемы если тест @Disabled
         @DisplayName("Успешная регистрация нового пользователя")
         @Description("Создаем нового пользователя со случайными данными через интерфейс")
+        @Tags({@Tag("UI"), @Tag("positive")})
+
         void userRegistrationTest() {
             password = faker.credentials().password();
             email = faker.internet().emailAddress();
@@ -71,13 +72,14 @@ public class LoginTest extends TestBase {
 
     @ParameterizedTest(name = "Авторизация с невалидным Email: {0}")
     @Owner("ilderovilderov")
-    @Tag("negative")
     @Severity(NORMAL)
     @Epic("Авторизация")
     @Feature("Вход в личный кабинет")
     @Story("Авторизация пользователя с невалидными данными")
     @Link("TASK-008")
     @CsvFileSource(resources = "/email.csv")
+    @Tags({@Tag("UI"), @Tag("negative")})
+
     void invalidEmailLoginTest(String email) {
         open(WEB_SHOP_LOGIN_URL, LoginPage.class)
                 .setEmail(email)
