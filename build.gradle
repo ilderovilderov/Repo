@@ -29,14 +29,36 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.3'
     testImplementation 'com.codeborne:selenide:7.14.0'
     testImplementation("net.datafaker:datafaker:2.5.4")
+    implementation 'org.aeonbits.owner:owner:1.0.12'
 }
 
 test {
     useJUnitPlatform()
+    systemProperties(System.getProperties())
 }
 
-task negativeTest(type: Test) {                    // - подключаем таску для негативных тестов
+task uiTest(type: Test) {                    // - подключаем таску
     useJUnitPlatform {
-        includeTags 'negative'
+        def tag = System.getProperty("tag")
+        // если тэг указан - запускаем ui + тэг тест
+        // если не указан - только ui
+        if (tag != null && !tag.isBlank()) {
+            includeTags("UI & ${tag}")
+        } else {
+            includeTags("UI")
+        }
     }
+    systemProperties(System.getProperties())
+}
+
+task apiTest(type: Test) {                    // - подключаем таску
+    useJUnitPlatform {
+        def tag = System.getProperty("tag")
+        if (tag != null && !tag.isBlank()) {
+            includeTags("API & ${tag}")
+        } else {
+            includeTags("API")
+        }
+    }
+    systemProperties(System.getProperties())
 }
