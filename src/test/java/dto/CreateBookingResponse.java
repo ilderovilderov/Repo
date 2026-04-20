@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class AuthRequest {
-    private String username;
-    private String password;
+public class CreateBookingResponse {
+    private Integer bookingid;
+    private CreateBookingDTO booking;
 }
