@@ -1,15 +1,26 @@
 package ru.bulgakov.qa;
 
 import com.codeborne.selenide.Configuration;
+import io.qameta.allure.Link;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import jUnit.TestBase;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class QaTest {
+public class QaTest extends TestBase {
 
     @Test
+    @DisplayName("Проверка стоимости менторства: 47.000 рублей")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("@ilderovilderov")
+    @Link(name = "TASK-002")
     void mentoringPriceShouldBe47000Test() {
         Configuration.browserSize = "1920x1080";
 
@@ -23,18 +34,11 @@ public class QaTest {
     }
 
     @Test
-    void loginAndSendMessageGmail() {
-        Configuration.browserSize = "1920x1080";
-
-        open("https://mail.google.com/");
-        $("[type=email]").setValue("alexandertest73@gmail.com");
-        $("#identifierNext").click();
-        sleep(5000);
-        $("[type=password]").setValue("1609Test");
-        $("#passwordNext").click();
-    }
-
-    @Test
+    @Tag("positive")
+    @DisplayName("Успешное заполнение формы на сайте")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("@ilderovilderov")
+    @Link(name = "TASK-003")
     void practiceFormDemoQA() {
         Configuration.browserSize = "1920x1080";
 
