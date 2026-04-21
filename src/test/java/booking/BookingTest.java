@@ -14,10 +14,9 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
+import static webShop.config.Config.BOOKING_URL;
 
 public class BookingTest {
-
-    private static final String BOOKING_URL = "https://restful-booker.herokuapp.com";
 
     @BeforeAll
     static void setUp() {
