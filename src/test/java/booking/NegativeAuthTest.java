@@ -52,7 +52,7 @@ public class NegativeAuthTest {
                 .statusCode(200)   // тут можно ожидать 401, но пришли все 200
                 .extract().as(AuthResponse.class);
 
-        assertThat(wrongResp.getToken()).isNull();
+        assertThat(wrongResp.getToken()).isNull(); //
     }
 
     @DisplayName("Задача 1. Сценарии 6. Без body")

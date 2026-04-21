@@ -37,7 +37,7 @@ public class BookingTest {
                 .post(BOOKING_URL + "/auth")
                 .then()
                 .statusCode(200)
-                .extract().as(AuthResponse.class);
+                .extract().as(AuthResponse.class); //
 
         assertThat(resp.getToken()).isNotNull();
     }

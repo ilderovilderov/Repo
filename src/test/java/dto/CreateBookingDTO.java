@@ -30,3 +30,4 @@ public class CreateBookingDTO {
         private String checkout;
     }
 }
+//

@@ -71,7 +71,7 @@ public class NegativeBookingTest {
                 .body(buildWithoutLastname("Ivan", 3000, true, "2026-01-01", "2026-02-02", "coffee"))
                 .post(BOOKING_URL + "/booking")
                 .then()
-                .statusCode(500) // Наверное дожен приходить 401, но теперь 500
+                .statusCode(500) // Наверное дожен приходить 401, но теперь 500 //
                 .extract()
                 .asString();
 
